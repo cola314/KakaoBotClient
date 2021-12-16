@@ -1,32 +1,30 @@
-package com.example.chatbot;
+package com.example.chatbot.notification;
 
 import android.app.Notification;
-import android.app.PendingIntent;
-import android.app.RemoteInput;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
 import android.util.Log;
-import android.widget.Toast;
 
-public class MyNotificationListener extends NotificationListenerService {
+import com.example.chatbot.AppContext;
+import com.example.chatbot.interactor.ClientMessageReceiver;
+import com.example.chatbot.interactor.MessageDetail;
 
-    private ChattingManager chattingmanager;
+public class NotificationListener extends NotificationListenerService {
+
+    private final String TAG = "NotificationListener";
+    private ClientMessageReceiver clientMessageReceiver;
+    private NotificationContextStorage notificationContextStorage;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        chattingmanager = new ChattingManager(getApplicationContext());
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+        AppContext appContext = AppContext.getInstance();
+        clientMessageReceiver = appContext.getApp().getClientMessageReceiver();
+        notificationContextStorage = appContext.getNotificationContextStorage();
     }
 
     @Override
@@ -57,18 +55,24 @@ public class MyNotificationListener extends NotificationListenerService {
                                 else isGroupChat = true;
                             }
                             if (room == null) room = sender;
-                            chatHook(sender, msg.trim(), room, isGroupChat, act);
+                            chatHook(sender, msg.trim(), room, isGroupChat);
+                            saveSession(room, act);
                         }
                     }
                 }
-            } catch(Exception e){
-                Log.d("NOTI",e.toString()+"\nAt:"+e.getStackTrace()[0].getLineNumber());
+            } catch (Exception e) {
+                Log.e(TAG,"fail to get notification", e);
             }
         }
     }
 
-    private void chatHook(String sender, String msg, String room, boolean isGroupChat, Notification.Action session) {
-        Log.d("NOTI", "sender: " + sender + "\nmsg: " + msg + "\nroom: " + room + "\nisGroupChat: " + isGroupChat);
-        chattingmanager.chatHook(sender, msg, room, isGroupChat, session);
+    private void saveSession(String room, Notification.Action context) {
+        notificationContextStorage.saveContext(room, context);
     }
+
+    private void chatHook(String sender, String msg, String room, boolean isGroupChat) {
+        MessageDetail messageDetail = new MessageDetail(room, sender, msg, isGroupChat);
+        clientMessageReceiver.onMessageReceivedFromClient(messageDetail);
+    }
+
 }
