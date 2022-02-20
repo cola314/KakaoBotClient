@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="KakaoBotClient.MainPage"
+             xmlns:resources="clr-namespace:KakaoBotClient.Resources">
+    <ScrollView>
+        <StackLayout>
+
+            <Frame BackgroundColor="#FFE812" Padding="24" CornerRadius="0">
+                <Label Text="{x:Static resources:Resource.APP_TITLE}" HorizontalTextAlignment="Center" TextColor="#000000" FontSize="36"/>
+            </Frame>
+
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 권한 설정 -->
+                <Label Text="{x:Static resources:Resource.AUTH}" FontSize="Body"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Grid.Column="1" Margin="0,0,0,20">
+                    <Button Text="{x:Static resources:Resource.AUTH_SETTING}" Command="{Binding RequestAuth}"/>
+                </StackLayout>
+
+                <!-- 서버 설정 -->
+                <Label Text="{x:Static resources:Resource.SERVER_ADDRESS}" FontSize="Body" Grid.Row="1" Margin="0,10,0,0"/>
+                <StackLayout Grid.Row="1" Grid.Column="1" Margin="0,0,0,20">
+                    <Entry Text="{Binding ServerAddress}"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                        <Button Text="{x:Static resources:Resource.CONNECT_SERVER}" Command="{Binding ConnectServer}"/>
+                        <Button Text="{x:Static resources:Resource.DISCONNECT_SERVER}" Command="{Binding DisconnectServer}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- API 설정 -->
+                <Label Text="{x:Static resources:Resource.API_KEY}" FontSize="Body" Grid.Row="2" Margin="0,10,0,0"/>
+                <StackLayout Grid.Row="2" Grid.Column="1">
+                    <Entry IsPassword="True" Text="{Binding ApiKey}"/>
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

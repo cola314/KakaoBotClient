@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32127.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoBotClient.Android", "KakaoBotClient\KakaoBotClient.Android\KakaoBotClient.Android.csproj", "{59096099-318D-4942-B4D9-65D2B0B42CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoBotClient", "KakaoBotClient\KakaoBotClient\KakaoBotClient.csproj", "{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59096099-318D-4942-B4D9-65D2B0B42CDA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130BFD35-0ADF-48A3-8CE5-DBFDEA8793E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EFC0583-B34A-40F5-AB8D-8776A71A55A1}
+	EndGlobalSection
+EndGlobal
