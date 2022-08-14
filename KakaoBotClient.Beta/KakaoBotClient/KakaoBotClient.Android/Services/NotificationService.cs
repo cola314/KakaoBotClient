@@ -15,7 +15,8 @@ namespace KakaoBotClient.Droid.Services
     [Service(
         Name = "org.goodgoodgood.notification.NotificationListener",
         Label = "Mina Listener",
-        Permission = "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE")]
+        Permission = "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE",
+        Exported = true)]
     [IntentFilter(new[] { "android.service.notification.NotificationListenerService" })]
     public class NotificationService : NotificationListenerService
     {

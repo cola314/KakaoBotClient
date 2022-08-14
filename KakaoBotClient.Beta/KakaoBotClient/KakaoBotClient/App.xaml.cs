@@ -38,7 +38,7 @@ namespace KakaoBotClient
             services.AddSingleton<IMessageObserver>(x => x.GetRequiredService<ClientMessageFacade>());
             services.AddSingleton<IApplicationEventQueue, MessagingCenterEventQueue>();
             services.AddSingleton<ApplicationStorage>();
-            services.AddTransient<IMessageServerClient, SocketIOMessageServerClient>();
+            services.AddTransient<IMessageServerClient, GrpcMessageServerClient>();
 
             services.AddTransient<MainViewModel>();
 
