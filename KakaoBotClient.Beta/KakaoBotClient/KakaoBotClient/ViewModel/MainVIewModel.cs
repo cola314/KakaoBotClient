@@ -5,6 +5,7 @@ using KakaoBotClient.Model.Storage;
 using KakaoBotClient.Resources;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -83,7 +84,10 @@ namespace KakaoBotClient.ViewModel
                 };
                 _client.OnReceiveMessage += (s, message) =>
                 {
-                    _clientMessageFacade.SendMessage(message.Room, message.Content);
+                    Task.Run(() =>
+                    {
+                        _clientMessageFacade.SendMessage(message.Room, message.Content);
+                    });
                 };
 
                 try

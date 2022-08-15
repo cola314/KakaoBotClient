@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
 using GrpcProto;
 using KakaoBotClient.Model.Messages;
 
@@ -24,7 +26,11 @@ namespace KakaoBotClient.Model.MessageServer
             _cts = new CancellationTokenSource();
             _apiKey = apiKey;
 
-            _channel = GrpcChannel.ForAddress(address);
+            var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            });
+            _channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions() {HttpHandler = httpHandler});
             _client = new KakaoClient.KakaoClientClient(_channel);
             
             _ = Task.Run(async () =>
