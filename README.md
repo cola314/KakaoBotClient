@@ -37,6 +37,9 @@ KakaoBotClient
       ├─Resources
       └─Services
 ```
+## 동작
+- 서버와의 통신 및 플로우는 KakaoBotServer 프로젝트 문서에 자세히 설명되어있음
+- https://github.com/cola314/KakaoBotServer
 
 ### gRPC 연결 정책
 - 연결 실패 혹은 연결이 끊어진 경우 1초 주기로 연결 시도
