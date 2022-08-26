@@ -44,7 +44,7 @@ namespace KakaoBotClient.Model.MessageServer
                         {
                             OnConnected?.Invoke(this, EventArgs.Empty);
 
-                            while (await call.ResponseStream.MoveNext(CancellationToken.None))
+                            while (await call.ResponseStream.MoveNext(_cts.Token))
                             {
                                 var pushMessage = call.ResponseStream.Current;
                                 Console.WriteLine(
